@@ -35,6 +35,13 @@ public class PatientService {
         return new ArrayList<>(patientDatabase);
     }
 
+    public Patient getPatient(String patientId) {
+        return patientDatabase.stream()
+                .filter(patient -> patient.getId().equals(patientId.trim()))
+                .findFirst()
+                .orElse(null);
+    }
+
     public void ajoutPatient(Patient patient){
         patient.setId(UUID.randomUUID().toString());
         patientDatabase.add(patient);
@@ -56,6 +63,6 @@ public class PatientService {
     }
 
     public boolean supprimerPatient(String id) {
-        return patientDatabase.removeIf(patient -> patient.getId().equals(id)); // Supprime le patient si l'ID correspond
+        return patientDatabase.removeIf(patient -> patient.getId().equals(id));
     }
 }

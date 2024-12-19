@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -27,6 +28,20 @@ public class PatientController {
     @GetMapping
     public List<Patient> getAllPatients() {
         return patientService.getAllPatients();
+    }
+
+    @Operation(summary = "Obtenir les informations sur un patient à partir de son id", description = "Récupère un patient de la base de données")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Information sur le patient renvoyé avec succès"),
+            @ApiResponse(responseCode = "404", description = "The resource you were trying to reach is not found")
+    })
+    @GetMapping("/{patientId}")
+    public Patient getPatient(@PathVariable String patientId) {
+        Patient patient = patientService.getPatient(patientId);
+        if(patient == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Patient not found with ID: " + patientId);
+        }
+        return patient;
     }
 
     @Operation(summary = "Ajouter un nouveau patient", description = "Ajoute un patient dans la base de données")
