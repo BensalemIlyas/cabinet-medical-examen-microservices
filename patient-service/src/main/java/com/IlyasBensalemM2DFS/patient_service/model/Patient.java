@@ -1,21 +1,30 @@
 package com.IlyasBensalemM2DFS.patient_service.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Schema(description = "Détails d'un patient")
 public class Patient {
 
+    @Schema(description = "Identifiant unique du patient",requiredMode = Schema.RequiredMode.REQUIRED)
     private String id;
 
+    @Schema(description = "Nom du patient", requiredMode = Schema.RequiredMode.REQUIRED)
     private String nom;
 
+    @Schema(description = "Prénom du patient",  requiredMode = Schema.RequiredMode.REQUIRED)
     private String prenom;
 
+    @Schema(description = "Date de naissance du patient", requiredMode = Schema.RequiredMode.REQUIRED)
     private String dateNaissance;
 
+    @Schema(description = "Email du patient", requiredMode = Schema.RequiredMode.REQUIRED)
     private String email;
 
+    @Schema(description = "Numéro de téléphone du patient", requiredMode = Schema.RequiredMode.REQUIRED)
     private String telephone;
 
     public Patient() {
