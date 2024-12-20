@@ -38,7 +38,7 @@ public class PatientController {
     @GetMapping("/{patientId}")
     public Patient getPatient(@PathVariable String patientId) {
         Patient patient = patientService.getPatient(patientId);
-        if(patient == null) {
+        if (patient == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Patient not found with ID: " + patientId);
         }
         return patient;
