@@ -32,4 +32,25 @@ public class DossierMedicalService {
                 .findFirst()
                 .orElse(null );
     }
+
+    public DossierMedical getDossierMedical(String dossierMedicalId) {
+        return dossierMedicauxDatabase.stream()
+                .filter(dm -> dm.getId().equals(dossierMedicalId))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public List<DossierMedical> getAllDossierMedical() {
+        return dossierMedicauxDatabase;
+    }
+
+
+    public void ajoutDossierMedical(DossierMedical dossierMedical) {
+        dossierMedicauxDatabase.add(dossierMedical);
+    }
+
+    public void ajouterVisiteToDossierMedical(String dossierMedicalId, VisiteMedicale visiteMedicale) {
+        DossierMedical dossierMedical = getDossierMedical(dossierMedicalId);
+        dossierMedical.getVisites().add(visiteMedicale);
+    }
 }

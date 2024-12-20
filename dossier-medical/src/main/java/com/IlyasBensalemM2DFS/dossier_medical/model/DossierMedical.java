@@ -49,4 +49,5 @@ public class DossierMedical {
     public void setVisites(List<VisiteMedicale> visites) {
         this.visites = visites;
     }
+
 }

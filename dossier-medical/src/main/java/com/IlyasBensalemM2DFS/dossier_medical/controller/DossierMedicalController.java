@@ -3,19 +3,15 @@ package com.IlyasBensalemM2DFS.dossier_medical.controller;
 
 import com.IlyasBensalemM2DFS.dossier_medical.delegate.PatientServiceDelegate;
 import com.IlyasBensalemM2DFS.dossier_medical.delegate.PraticienServiceDelegate;
-import com.IlyasBensalemM2DFS.dossier_medical.model.DossierMedical;
-import com.IlyasBensalemM2DFS.dossier_medical.model.DossierMedicalComplet;
-import com.IlyasBensalemM2DFS.dossier_medical.model.Patient;
-import com.IlyasBensalemM2DFS.dossier_medical.model.Praticien;
+import com.IlyasBensalemM2DFS.dossier_medical.model.*;
 import com.IlyasBensalemM2DFS.dossier_medical.service.DossierMedicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/dossier-medicaux")
@@ -28,6 +24,11 @@ public class DossierMedicalController {
     @Autowired
     private PatientServiceDelegate patientServiceDelegate;
 
+
+    @GetMapping("/")
+    public List<DossierMedical> getAllDossierMedical(){
+        return dossierMedicalService.getAllDossierMedical();
+    }
 
     @GetMapping("/{praticienId}/{patientId}")
     public DossierMedicalComplet getDossierMedical(
@@ -54,12 +55,19 @@ public class DossierMedicalController {
         return dossierMedicalComplet;
     }
 
-    //TODO Pour un medecin et un patient recuperer la liste des visites medicales
+    @GetMapping("/{dossierMedicalId}")
+    public DossierMedical getDossierMedical(@PathVariable String dossierMedicalId){
+        return dossierMedicalService.getDossierMedical(dossierMedicalId);
+    }
 
-    //TODO récuperer une visite médicale.
+    @PostMapping("/ajout-dossier")
+    public void ajoutDossierMedical(@RequestBody DossierMedical dossierMedical){
+        dossierMedical.setId(UUID.randomUUID().toString());
+        dossierMedicalService.ajoutDossierMedical(dossierMedical);
+    }
 
-    //TODO créer un dossier medical
-
-    //TODO ajouter une visite medical
-
+    @PostMapping("/ajout-visite/{dossierMedicalId}")
+    public void ajouterVisiteToDossierMedical(@PathVariable String dossierMedicalId, @RequestBody VisiteMedicale visiteMedicale){
+        this.dossierMedicalService.ajouterVisiteToDossierMedical(dossierMedicalId, visiteMedicale);
+    }
 }
