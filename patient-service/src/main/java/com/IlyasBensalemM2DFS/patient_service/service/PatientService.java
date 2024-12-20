@@ -20,7 +20,7 @@ public class PatientService {
                 "0658145863"
         );
         Patient souad = new Patient(
-                UUID.randomUUID().toString(),
+                "10bff7de-e88d-4c76-a8e1-fe0f4893af3e",
                 "Souad",
                 "Akrif",
                 "13/09/2002",

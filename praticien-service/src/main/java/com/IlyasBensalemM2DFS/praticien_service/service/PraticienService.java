@@ -20,7 +20,7 @@ public class PraticienService {
                 "0658145563"
         );
         Praticien marc = new Praticien(
-                UUID.randomUUID().toString(),
+                "185db10b-2795-47d1-ad74-dbc2547e90c4",
                 "umbert",
                 "marc",
                 "generaliste",
