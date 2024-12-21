@@ -25,7 +25,7 @@ public class DossierMedicalController {
     private PatientServiceDelegate patientServiceDelegate;
 
 
-    @GetMapping("/")
+    @GetMapping
     public List<DossierMedical> getAllDossierMedical(){
         return dossierMedicalService.getAllDossierMedical();
     }

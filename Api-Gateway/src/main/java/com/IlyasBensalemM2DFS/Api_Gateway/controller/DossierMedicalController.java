@@ -21,7 +21,7 @@ public class DossierMedicalController {
     String baseUrl;
 
 
-    @GetMapping("/")
+    @GetMapping
     public List<DossierMedical> getAllDossierMedical(){
         String url = baseUrl;
         return this.restTemplate.exchange(
