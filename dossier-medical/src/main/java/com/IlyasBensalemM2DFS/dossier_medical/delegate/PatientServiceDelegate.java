@@ -13,7 +13,7 @@ public class PatientServiceDelegate {
     private RestTemplate restTemplate = new RestTemplate();
 
     public Patient getPatient(String patientId){
-        String url = "http://localhost:8081/patients/{patientId}";
+        String url = "http://host.docker.internal:8081/patients/{patientId}";
 
         ResponseEntity<Patient> patientResponse =  restTemplate.exchange(
                 url,

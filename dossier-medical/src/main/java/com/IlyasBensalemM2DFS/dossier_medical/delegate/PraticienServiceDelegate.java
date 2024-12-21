@@ -14,7 +14,7 @@ public class PraticienServiceDelegate {
     private RestTemplate restTemplate = new RestTemplate();
 
     public Praticien getPraticien(String praticienId){
-        String url = "http://localhost:8082/praticiens/{praticienId}";
+        String url = "http://host.docker.internal:8082/praticiens/{praticienId}";
         ResponseEntity<Praticien> praticiensReponse = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
