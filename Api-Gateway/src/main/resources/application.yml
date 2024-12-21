@@ -1,6 +1,16 @@
 server:
   port: 8080
 
+services:
+  patient-service:
+    url: http://localhost:8081/patients
+  praticien-service:
+    url: http://localhost:8082/praticiens
+  rendez-vous-service:
+    url:  http://localhost:8083/rendez-vous
+  dossier-medical-service:
+    url: http://localhost:8084/dossier-medicaux
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 5

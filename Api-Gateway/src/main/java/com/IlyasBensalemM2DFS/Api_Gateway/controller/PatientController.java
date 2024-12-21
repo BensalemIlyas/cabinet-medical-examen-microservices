@@ -1,6 +1,7 @@
 package com.IlyasBensalemM2DFS.Api_Gateway.controller;
 
 import com.IlyasBensalemM2DFS.Api_Gateway.model.Patient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,8 @@ import java.util.List;
 public class PatientController {
 
     RestTemplate restTemplate = new RestTemplate();
-
-    String baseUrl = "http://localhost:8081/patients";
+    @Value("${services.patient-service.url}")
+    String baseUrl;
 
     @GetMapping
     public List<Patient> getAllPatient(){
