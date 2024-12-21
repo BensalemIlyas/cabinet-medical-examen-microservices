@@ -5,6 +5,12 @@ spring:
 server:
   port: 8084
 
+services:
+  patient-service:
+    url: http://localhost:8081/patients/{patientId}
+  praticien-service:
+    url: http://localhost:8082/praticiens/{praticienId}
+
 
 springdoc:
   api-docs:
@@ -22,3 +28,23 @@ eureka:
     fetchRegistry: true           # Récupère le registre
   instance:
     preferIpAddress: true
+
+config:
+  activate:
+    on-profile: docker
+
+---
+spring.config.activate.on-profile: docker
+
+services:
+  patient-service:
+    url: http://host.docker.internal:8081/patients/{patientId}
+  praticien-service:
+    url: http://host.docker.internal:8082/praticiens/{praticienId}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://host.docker.internal:8761/eureka/
+
+

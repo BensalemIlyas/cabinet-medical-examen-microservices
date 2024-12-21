@@ -2,6 +2,7 @@ package com.IlyasBensalemM2DFS.dossier_medical.delegate;
 
 import com.IlyasBensalemM2DFS.dossier_medical.model.Praticien;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +14,11 @@ public class PraticienServiceDelegate {
 
     private RestTemplate restTemplate = new RestTemplate();
 
+    @Value("${services.praticien-service.url}")
+    private String praticienServiceUrl;
+
     public Praticien getPraticien(String praticienId){
-        String url = "http://host.docker.internal:8082/praticiens/{praticienId}";
+        String url =praticienServiceUrl;
         ResponseEntity<Praticien> praticiensReponse = restTemplate.exchange(
                 url,
                 HttpMethod.GET,

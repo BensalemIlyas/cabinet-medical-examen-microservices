@@ -8,5 +8,6 @@ FROM bitnami/java:17
 COPY --from=build /app/target/dossier-medical-0.0.1-SNAPSHOT.jar /usr/app/dossier-medical.jar
 WORKDIR /usr/app
 EXPOSE 8084
+ENV SPRING_PROFILES_ACTIVE=docker
 CMD ["java", "-jar", "dossier-medical.jar"]
 
