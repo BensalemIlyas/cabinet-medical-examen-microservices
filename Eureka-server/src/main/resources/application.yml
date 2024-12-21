@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: Eureka-server
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+  client:
+    registerWithEureka: false    # Ne pas s'enregistrer lui-même
+    fetchRegistry: false         # Ne pas récupérer le registre
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+  server:
+    enableSelfPreservation: false    # Désactive l'auto-préservation en développement
+    renewal-percent-threshold: 0.85
+    eviction-interval-timer-in-ms: 1000   # Intervalle de nettoyage des instances expirées
+    response-cache-update-interval-ms: 3000    # Mise à jour du cache des réponse
+
+

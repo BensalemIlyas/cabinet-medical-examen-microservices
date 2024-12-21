@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: praticien-service
+
+server:
+  port: 8082
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/    # URL du serveur Eureka
+    registerWithEureka: true      # S'enregistre auprès d'Eureka
+    fetchRegistry: true           # Récupère le registre
+  instance:
+    preferIpAddress: true
+
+

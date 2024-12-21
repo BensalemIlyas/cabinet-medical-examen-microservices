@@ -1,5 +1,10 @@
+spring:
+  application:
+    name: api-gateway
+
+
 server:
-  port: 8080
+  port: 8085
 
 services:
   patient-service:
@@ -12,28 +17,12 @@ services:
     url: http://localhost:8084/dossier-medicaux
 
 eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 2
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-    healthcheck:
-      enabled: true
-    lease:
-      duration: 5
+  instance:
+    preferIpAddress: true
 
-spring:
-  application:
-    name: api-gateway
-
-management:
-  security:
-    enabled: false
-
-logging:
-  level:
-    com.self.sprintboot.learning.apigateway: DEBUG
 
 springdoc:
   api-docs:
