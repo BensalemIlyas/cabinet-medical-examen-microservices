@@ -7,6 +7,6 @@ RUN ls -alh /app/target/
 FROM bitnami/java:17
 COPY --from=build /app/target/praticien-service-0.0.1-SNAPSHOT.jar /usr/app/praticien-service.jar
 WORKDIR /usr/app
-EXPOSE 8081
+EXPOSE 8082
 CMD ["java", "-jar", "praticien-service.jar"]
 
